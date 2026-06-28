@@ -23,7 +23,7 @@ export default function Hero () {
                         AI Powered Career Guidance
                     </span>
                     <h1 className="mt-6 text-5xl font-extrabold leading-tight text-slate-900">
-                        Restart Your Career with Confidence
+                        Restart Your Career with AI Confidence
                     </h1>
                     <p className="mt-6 text-lg leading-8 text-slate-600">
                         Personalized AI career counseling designed for women returning to
@@ -32,7 +32,7 @@ export default function Hero () {
                     </p>
                     <div className="mt-10 flex flex-wrap gap-4">
                         <Link href="/assessment" className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
-                            Start Assessment
+                            Start Free Assessment
                             <FaArrowRight />
                         </Link>
                         <a href="#how-it-works" className="rounded-xl border border-slate-300 px-6 py-3 font-semibold transition hover:bg-slate-100">
