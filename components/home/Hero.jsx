@@ -31,11 +31,11 @@ export default function Hero () {
                         skill gaps, and receive a structured learning roadmap.
                     </p>
                     <div className="mt-10 flex flex-wrap gap-4">
-                        <Link href="/assessment" className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
+                        <Link href="/assessment" className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700">
                             Start Free Assessment
                             <FaArrowRight />
                         </Link>
-                        <a href="#how-it-works" className="rounded-xl border border-slate-300 px-6 py-3 font-semibold transition hover:bg-slate-100">
+                        <a href="#how-it-works" className="rounded-xl border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition-all duration-300 hover:scale-105 hover:bg-slate-100 hover:border-blue-500 hover:text-blue-600">
                             Learn More
                         </a>
                     </div>
@@ -48,7 +48,7 @@ export default function Hero () {
                     transition={{ duration: 0.8 }}
                 >
                     <div className="grid grid-cols-2 gap-6">
-                        <div className="rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                             <FaBrain className="text-5xl text-blue-600"/>
                             <h3 className="mt-4 text-xl font-bold">
                                 AI Career Analysis
@@ -58,7 +58,7 @@ export default function Hero () {
                             </p>
                         </div>
 
-                        <div className="rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                             <FaUserGraduate className="text-5xl text-emerald-600" />
                             <h3 className="mt-4 text-xl font-bold">
                                 Skill Roadmap
@@ -68,7 +68,7 @@ export default function Hero () {
                             </p>
                         </div>
 
-                        <div className="col-span-2 rounded-2xl bg-white p-6 shadow-lg">
+                        <div className="col-span-2 rounded-2xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                             <FaChartLine className="text-5xl text-amber-500"/>
                             <h3 className="mt-4 text-xl font-bold">
                                 Employability Score

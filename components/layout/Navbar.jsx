@@ -12,13 +12,13 @@ export default function Navbar() {
                     <span>SheStarts AI</span>
                 </Link>
                 <div className="hidden items-center gap-8 md:flex">
-                    <Link href="/" className="hover:text-blue-600 transition">
+                    <Link href="/" className="transition-all duration-300 hover:text-blue-600">
                         Home
                     </Link>
-                    <Link href="/assessment" className="hover:text-blue-600 transition">
+                    <Link href="/assessment" className="transition-all duration-300 hover:text-blue-600">
                         Assessment
                     </Link>
-                    <Link href="/dashboard" className="hover:text-blue-600 transition">
+                    <Link href="/dashboard" className="transition-all duration-300 hover:text-blue-600">
                         Dashboard
                     </Link>
                 </div>
