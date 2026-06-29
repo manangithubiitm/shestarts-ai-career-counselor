@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
-import { FaUser, FaBriefcase, FaCode, FaBullseye } from "react-icons/fa";
+import { FaUser, FaBriefcase, FaCode, FaBullseye, FaSpinner } from "react-icons/fa";
 export default function AssessmentForm() {
+  const [loading, setLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState(
+    "Analyzing your profile..."
+  );
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -47,6 +51,8 @@ export default function AssessmentForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setLoadingMessage("Analyzing your profile...");
 
     try {
       const response = await fetch("/api/analyze", {
@@ -58,7 +64,9 @@ export default function AssessmentForm() {
       });
 
       const data = await response.json();
+      setLoadingMessage("Matching your skills with career opportunities...");
       console.log(data);
+      setLoadingMessage("Preparing your personalized AI roadmap...");
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong.");
       }
@@ -81,6 +89,8 @@ export default function AssessmentForm() {
     } catch (error) {
       console.error(error);
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -104,6 +114,7 @@ export default function AssessmentForm() {
               type="text"
               name="fullName"
               value={formData.fullName}
+              disabled={loading}
               onChange={handleChange}
               placeholder="Enter your full name"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
@@ -117,6 +128,7 @@ export default function AssessmentForm() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              disabled={loading}
               placeholder="example@gmail.com"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
@@ -128,6 +140,7 @@ export default function AssessmentForm() {
               name="education"
               value={formData.education}
               onChange={handleChange}
+              disabled={loading}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
             >
@@ -159,6 +172,7 @@ export default function AssessmentForm() {
               name="previousRole"
               value={formData.previousRole}
               onChange={handleChange}
+              disabled={loading}
               placeholder="Software Engineer"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
@@ -172,6 +186,7 @@ export default function AssessmentForm() {
               value={formData.industry}
               onChange={handleChange}
               placeholder="IT"
+              disabled={loading}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
             />
@@ -188,6 +203,7 @@ export default function AssessmentForm() {
               value={formData.experience}
               onChange={handleChange}
               placeholder="1"
+              disabled={loading}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
             />
@@ -198,6 +214,7 @@ export default function AssessmentForm() {
               name="careerBreak"
               value={formData.careerBreak}
               onChange={handleChange}
+              disabled={loading}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
             >
@@ -230,6 +247,7 @@ export default function AssessmentForm() {
                 type="checkbox"
                 checked={formData.skills.includes(skill)}
                 onChange={() => handleSkillChange(skill)}
+                disabled={loading}
               />
 
               {skill}
@@ -245,6 +263,7 @@ export default function AssessmentForm() {
             name="otherSkills"
             value={formData.otherSkills}
             onChange={handleChange}
+            disabled={loading}
             placeholder="Enter additional skills"
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
           />
@@ -269,6 +288,7 @@ export default function AssessmentForm() {
               name="preferredIndustry"
               value={formData.preferredIndustry}
               onChange={handleChange}
+              disabled={loading}
               placeholder="Healthcare, IT..."
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
             />
@@ -280,6 +300,7 @@ export default function AssessmentForm() {
             <select
               name="workMode"
               value={formData.workMode}
+              disabled={loading}
               onChange={handleChange}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
             >
@@ -301,6 +322,7 @@ export default function AssessmentForm() {
               name="careerGoal"
               value={formData.careerGoal}
               onChange={handleChange}
+              disabled={loading}
               placeholder="Describe your career goals..."
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
               required
@@ -309,13 +331,39 @@ export default function AssessmentForm() {
         </div>
       </div>
 
-      <div className="pt-8 text-center">
+      <div className="flex flex-col items-center pt-8">
         <button
           type="submit"
-          className="rounded-xl bg-blue-600 px-10 py-4 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"
+          disabled={loading}
+          className={`flex items-center justify-center gap-2 rounded-xl px-10 py-4 text-lg font-semibold text-white transition-all duration-300
+          ${
+            loading 
+              ? "cursor-not-allowed bg-slate-400"
+              : "bg-blue-600 hover:scale-105 hover:bg-blue-700"
+          }`}
         >
-          Generate AI Career Plan
+          {loading ? (
+            <>
+              <FaSpinner className="animate-spin" />
+              <span>Generating AI Career Plan...</span>
+            </>
+          ) : (
+            "Generate AI Career Plan"
+          )}
         </button>
+        {loading && (
+          <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-6 text-center shadow-sm">
+            <div className="mb-3 flex items-center justify-center gap-2 text-blue-600">
+              <FaSpinner className="animate-spin text-xl" />
+              <h3 className="text-lg font-semibold">
+                {loadingMessage}
+              </h3>
+            </div>
+            <p className="text-slate-600">
+              Please wait while we review your experience, skills and career goals.
+            </p>
+          </div>
+        )}
       </div>
     </form>
   );
