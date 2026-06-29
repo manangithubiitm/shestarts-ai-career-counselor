@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FaUser, FaBriefcase, FaCode, FaBullseye, FaSpinner } from "react-icons/fa";
 export default function AssessmentForm() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState(
     "Analyzing your profile..."
@@ -70,22 +72,8 @@ export default function AssessmentForm() {
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong.");
       }
-      alert("Assessment submitted successfully!");
-
-      setFormData({
-        fullName: "",
-        email: "",
-        education: "",
-        previousRole: "",
-        industry: "",
-        experience: "",
-        careerBreak: "",
-        skills: [],
-        otherSkills: "",
-        preferredIndustry: "",
-        workMode: "",
-        careerGoal: "",
-      });
+      setLoadingMessage("Redirecting to your dashboard...");
+      router.push(`/dashboard/${data.assessment._id}`);
     } catch (error) {
       console.error(error);
       alert(error.message);

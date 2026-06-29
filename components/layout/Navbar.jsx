@@ -9,7 +9,6 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/assessment", label: "Assessment" },
-    { href: "/dashboard", label: "Dashboard" },
   ];
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">

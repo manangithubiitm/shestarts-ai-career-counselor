@@ -53,6 +53,10 @@ const AssessmentSchema = new mongoose.Schema(
             type: String,
             default: "",
         },
+        aiResponse: {
+            type: Object,
+            default: {},
+        },
     },
     {
         timestamps: true,
