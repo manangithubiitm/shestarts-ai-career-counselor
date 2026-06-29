@@ -45,8 +45,49 @@ export default function AssessmentForm() {
         : [...prev.skills, skill],
     }));
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong.");
+      }
+      alert("Assessment submitted successfully!");
+
+      setFormData({
+        fullName: "",
+        email: "",
+        education: "",
+        previousRole: "",
+        industry: "",
+        experience: "",
+        careerBreak: "",
+        skills: [],
+        otherSkills: "",
+        preferredIndustry: "",
+        workMode: "",
+        careerGoal: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  };
   return (
-    <form action="" className="space-y-10 rounded-3xl bg-white p-8 shadow-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-10 rounded-3xl bg-white p-8 shadow-lg"
+    >
       <div>
         <div className="mb-8 flex items-center gap-3">
           <div className="rounded-full bg-blue-100 p-3">
@@ -66,6 +107,7 @@ export default function AssessmentForm() {
               onChange={handleChange}
               placeholder="Enter your full name"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
           </div>
           <div>
@@ -77,6 +119,7 @@ export default function AssessmentForm() {
               onChange={handleChange}
               placeholder="example@gmail.com"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
           </div>
           <div className="md:col-span-2">
@@ -86,6 +129,7 @@ export default function AssessmentForm() {
               value={formData.education}
               onChange={handleChange}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             >
               <option value="">Select Education</option>
               <option>Bachelor's Degree</option>
@@ -117,6 +161,7 @@ export default function AssessmentForm() {
               onChange={handleChange}
               placeholder="Software Engineer"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
           </div>
           <div>
@@ -128,6 +173,7 @@ export default function AssessmentForm() {
               onChange={handleChange}
               placeholder="IT"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
           </div>
           <div>
@@ -137,11 +183,13 @@ export default function AssessmentForm() {
             <input
               type="number"
               min="0"
+              max="40"
               name="experience"
               value={formData.experience}
               onChange={handleChange}
               placeholder="1"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
           </div>
           <div>
@@ -151,6 +199,7 @@ export default function AssessmentForm() {
               value={formData.careerBreak}
               onChange={handleChange}
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             >
               <option value="">Select Duration</option>
               <option>Less than 1 year</option>
@@ -254,6 +303,7 @@ export default function AssessmentForm() {
               onChange={handleChange}
               placeholder="Describe your career goals..."
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
           </div>
         </div>
