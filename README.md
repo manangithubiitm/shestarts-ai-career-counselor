@@ -1,36 +1,185 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 SheStarts AI Career Counselor
 
-## Getting Started
+An AI-powered career counseling platform that helps users restart or transition their careers by providing personalized career guidance, skill gap analysis, learning roadmaps, recommended courses, projects, and job roles using NVIDIA NIM AI models.
 
-First, run the development server:
+---
+
+## 🌐 Live Demo
+
+**Application:** https://shestarts-ai-career-counselor.vercel.app
+
+---
+
+## 📌 Project Overview
+
+SheStarts AI Career Counselor enables users to complete a career assessment and receive an AI-generated personalized career report based on their education, work experience, career goals, skills, and preferred industry.
+
+The application leverages NVIDIA NIM APIs to generate structured career recommendations and stores assessment results in MongoDB for dynamic dashboard generation.
+
+---
+
+## ✨ Features
+
+* AI-powered personalized career analysis
+* Career readiness score with explanation
+* Recommended career path
+* Career summary
+* Strengths and skill gap analysis
+* Personalized learning roadmap
+* Recommended online courses
+* Suggested hands-on projects
+* Recommended job roles
+* Actionable next steps
+* Dynamic dashboard for every assessment
+* Responsive user interface
+* MongoDB database integration
+* Server-side API integration using Next.js Route Handlers
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* Next.js 15 (App Router)
+* React.js
+* Tailwind CSS
+* React Icons
+
+### Backend
+
+* Next.js Route Handlers
+* MongoDB Atlas
+* Mongoose
+
+### AI
+
+* NVIDIA NIM API
+
+### Deployment
+
+* Vercel
+
+---
+
+## 📂 Project Structure
+
+```
+app/
+│
+├── assessment/
+├── dashboard/
+│   └── [id]/
+├── api/
+│   └── analyze/
+│
+components/
+│
+├── dashboard/
+├── form/
+├── home/
+└── layout/
+│
+lib/
+├── mongodb.js
+└── nvidia.js
+│
+models/
+└── Assessment.js
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/manangithubiitm/shestarts-ai-career-counselor.git
+```
+
+Navigate into the project
+
+```bash
+cd shestarts-ai-career-counselor
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create a `.env.local` file
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+
+NVIDIA_API_KEY=your_nvidia_api_key
+```
+
+Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📊 AI Dashboard Includes
 
-To learn more about Next.js, take a look at the following resources:
+* Career Readiness Score
+* Recommended Career Path
+* Career Summary
+* Strengths
+* Skill Gaps
+* Learning Roadmap
+* Recommended Courses
+* Recommended Projects
+* Suggested Job Roles
+* Next Steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🗄 Database
 
-## Deploy on Vercel
+The application stores:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Personal Details
+* Career Assessment
+* AI Generated Career Analysis
+* Dashboard Data
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+using MongoDB Atlas.
+
+---
+
+## 🔮 Future Improvements
+
+* User Authentication
+* Assessment History
+* PDF Report Download
+* Email Report Generation
+* Resume Review using AI
+* Career Progress Tracking
+* Saved Learning Plans
+
+---
+
+## 👨‍💻 Author
+
+**Manan Tilwani**
+
+GitHub: https://github.com/manangithubiitm
+
+---
+
+## 📄 License
+
+This project is developed for educational purposes as part of the **SheStarts AI Career Counselor Assignment**.
